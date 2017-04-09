@@ -13,16 +13,16 @@ class ResponseParser
         let result = [];
 
         attributes.forEach(attribute => {
-            let equalsIndex = attribute.indexOf('=');
+            let seperatorIndex = attribute.indexOf('=');
             let key;
             let value;
 
-            if (equalsIndex === -1) {
+            if (seperatorIndex === -1) {
                 key = attribute;
                 value = '';
             } else {
-                key = attribute.substring(0, attribute.indexOf('='));
-                value = attribute.substring(attribute.indexOf('=') + 1, attribute.length);
+                key = attribute.substring(0, seperatorIndex);
+                value = attribute.substring(seperatorIndex + 1, attribute.length);
             }
 
             result[key] = Format.decode(value);
