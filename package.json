@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "description": "Simple web TS3 server viewer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RonMelkhior/ts3-viewer.git"
+  },
+  "author": "Ron Melkhior <ron@melkhior.io>",
+  "license": "GPL v2",
+  "bugs": {
+    "url": "https://github.com/RonMelkhior/ts3-viewer/issues"
+  },
+  "homepage": "https://github.com/RonMelkhior/ts3-viewer#readme",
+  "dependencies": {
+    "async": "^2.3.0",
+    "telnet-client": "^0.13.1"
+  }
+}
