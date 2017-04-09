@@ -5,6 +5,8 @@ const UseMethod = require('./methods/Use');
 const LoginMethod = require('./methods/Login');
 const ChannelInfoMethod = require('./methods/ChannelInfo');
 const ChannelListMethod = require('./methods/ChannelList');
+const ClientInfoMethod = require('./methods/ClientInfo');
+const ClientListMethod = require('./methods/ClientList');
 
 class TeamspeakFramework extends EventEmitter
 {
@@ -55,6 +57,22 @@ class TeamspeakFramework extends EventEmitter
      */
     channelList() {
         return ChannelListMethod.run(this.query);
+    }
+
+    /**
+     * Get client info.
+     *
+     * @param {number} clientID
+     */
+    clientInfo(clientID) {
+        return ClientInfoMethod.run(this.query, clientID);
+    }
+
+    /**
+     * Get client list.
+     */
+    clientList() {
+        return ClientListMethod.run(this.query);
     }
 
     /**
