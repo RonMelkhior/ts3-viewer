@@ -16,7 +16,6 @@
   },
   "homepage": "https://github.com/RonMelkhior/ts3-viewer#readme",
   "dependencies": {
-    "async": "^2.3.0",
     "telnet-client": "^0.13.1"
   }
 }
