@@ -6,11 +6,9 @@ class Channel
     /**
      * Construct the channel class.
      *
-     * @param {number} channelID
      * @param {string} data
      */
-    constructor(channelID, data) {
-        this.cid = channelID;
+    constructor(data) {
         this.raw = data;
 
         this.parse();

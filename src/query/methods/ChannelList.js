@@ -1,7 +1,7 @@
 const async = require('async');
 const ResponseParser = require('./../utils/ResponseParser');
 
-const ChannelInfoMethod = require('./ChannelInfo');
+const Channel = require('./../Channel');
 
 class ChannelList
 {
@@ -17,49 +17,22 @@ class ChannelList
     }
 
     /**
-     * Get detailed channel details about all the channels.
-     *
-     * @param {array} channelsRaw
-     */
-    static resolveChannels(channelsRaw) {
-        return new Promise((resolve, reject) => {
-            let currentChannel = 0;
-            let channels = [];
-
-            async.whilst(() => {
-                return currentChannel < channelsRaw.length;
-            }, next => {
-                let data = ResponseParser.parseLine(channelsRaw[currentChannel]);
-
-                ChannelInfoMethod.run(this.query, data.cid)
-                .then(channel => {
-                    channels.push(channel);
-                    currentChannel++;
-                    next(null, currentChannel);
-                })
-                .catch(error => reject(error));
-            }, () => {
-                resolve(channels);
-            });
-        });
-    }
-
-    /**
      * Get channel list.
      *
      * @param {callback} resolve
      * @param {callback} reject
      */
     static channelList(resolve, reject) {
-        let query = ['channellist'].join(' ');
+        let query = ['channellist', '-topic', '-flags', '-voice', '-limits', '-icon'].join(' ');
 
         this.query.exec(query)
         .then(response => {
             let channelsRaw = response[0].split('|');
+            let channels = [];
 
-            this.resolveChannels(channelsRaw)
-            .then(channels => resolve(channels))
-            .catch(error => reject(error));
+            channelsRaw.forEach(data => channels.push(new Channel(data)));
+
+            resolve(channels);
         })
         .catch(error => reject(error));
     }

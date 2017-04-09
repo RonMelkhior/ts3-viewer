@@ -25,7 +25,7 @@ class ClientInfo
         let query = ['clientinfo', 'clid=' + this.clientID].join(' ');
 
         this.query.exec(query)
-        .then(response => resolve(new Client(this.clientID, response[0])))
+        .then(response => resolve(new Client(response[0])))
         .catch(error => reject(error));
     }
 }

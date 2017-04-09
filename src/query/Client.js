@@ -6,11 +6,9 @@ class Client
     /**
      * Construct the client class.
      *
-     * @param {number} clientID
      * @param {string} data
      */
-    constructor(clientID, data) {
-        this.clid = clientID;
+    constructor(data) {
         this.raw = data;
 
         this.parse();

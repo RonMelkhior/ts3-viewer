@@ -1,7 +1,7 @@
 const async = require('async');
 const ResponseParser = require('./../utils/ResponseParser');
 
-const ClientInfoMethod = require('./ClientInfo');
+const Client = require('./../Client');
 
 class ClientList
 {
@@ -17,49 +17,22 @@ class ClientList
     }
 
     /**
-     * Get detailed client details about all the clients.
-     *
-     * @param {array} clientsRaw
-     */
-    static resolveClients(clientsRaw) {
-        return new Promise((resolve, reject) => {
-            let currentClient = 0;
-            let clients = [];
-
-            async.whilst(() => {
-                return currentClient < clientsRaw.length;
-            }, next => {
-                let data = ResponseParser.parseLine(clientsRaw[currentClient]);
-
-                ClientInfoMethod.run(this.query, data.clid)
-                .then(client => {
-                    clients.push(client);
-                    currentClient++;
-                    next(null, currentClient);
-                })
-                .catch(error => reject(error));
-            }, () => {
-                resolve(clients);
-            });
-        });
-    }
-
-    /**
      * Get client list.
      *
      * @param {callback} resolve
      * @param {callback} reject
      */
     static clientList(resolve, reject) {
-        let query = ['clientlist'].join(' ');
+        let query = ['clientlist', '-uid', '-away', '-voice', '-times', '-groups', '-info', '-icon', '-country'].join(' ');
 
         this.query.exec(query)
         .then(response => {
             let clientsRaw = response[0].split('|');
+            let clients = [];
 
-            this.resolveClients(clientsRaw)
-            .then(clients => resolve(clients))
-            .catch(error => reject(error));
+            clientsRaw.forEach(data => clients.push(new Client(data)));
+
+            resolve(clients);
         })
         .catch(error => reject(error));
     }
