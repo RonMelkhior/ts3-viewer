@@ -1,6 +1,3 @@
-const async = require('async');
-const ResponseParser = require('./../utils/ResponseParser');
-
 const Client = require('./../Client');
 
 class ClientList
