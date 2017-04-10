@@ -32,14 +32,23 @@ class Channel
     }
 
     /**
-     * Get the channel's clients.
+     * Get the channel's sub-channels.
+     *
+     * @param {array} channelList
+     * @return {array}
      */
-    clients() {
-        return new Promise((resolve, reject) => {
-            ClientListMethod.run(this.query, { cid: this.data.cid })
-            .then(response => resolve(response))
-            .catch(response => reject(error));
-        });
+    subChannels(channelList) {
+        return Filter.run(channelList, 'data', { cid: this.data.cid });
+    }
+
+    /**
+     * Get the channel's clients.
+     *
+     * @param {array} clientList
+     * @returns {array}
+     */
+    clients(clientList) {
+        return Filter.run(clientList, 'data', { cid: this.data.cid });
     }
 
     /**
