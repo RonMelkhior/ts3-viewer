@@ -1,5 +1,6 @@
 const Format = require('./utils/Format');
 const ResponseParser = require('./utils/ResponseParser');
+const Filter = require('./utils/Filter');
 
 const ClientListMethod = require('./methods/ClientList');
 
