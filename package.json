@@ -16,6 +16,8 @@
   },
   "homepage": "https://github.com/RonMelkhior/ts3-viewer#readme",
   "dependencies": {
+    "chalk": "^1.1.3",
+    "moment": "^2.18.1",
     "telnet-client": "^0.13.1"
   }
 }
