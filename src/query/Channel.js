@@ -33,6 +33,22 @@ class Channel
     }
 
     /**
+     * Return the channel in object format.
+     *
+     * @returns {object}
+     */
+    getObject() {
+        let properties = ['data', 'name', 'topic', 'description', 'neededTalkPower'];
+        let data = {};
+
+        properties.forEach(property => {
+            data[property] = this[property];
+        });
+
+        return data;
+    }
+
+    /**
      * Get the channel's sub-channels.
      *
      * @param {array} channelList
@@ -77,7 +93,7 @@ class Channel
      * Get the channel's needed talk power.
      */
     get neededTalkPower() {
-        return this.data.needed_talk_power;
+        return this.data.channel_needed_talk_power;
     }
 }
 
