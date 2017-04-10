@@ -33,8 +33,6 @@ class Client
 
     /**
      * Get the client's channel.
-     *
-     * @returns {Channel}
      */
     channel() {
         return new Promise((resolve, reject) => {
