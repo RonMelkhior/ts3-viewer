@@ -1,3 +1,4 @@
+const Filter = require('./../utils/Filter');
 const Channel = require('./../Channel');
 
 class ChannelList
@@ -6,9 +7,11 @@ class ChannelList
      * Execute the Channel List method.
      *
      * @param {Query} query
+     * @param {object} filters
      */
-    static run(query) {
+    static run(query, filters) {
         this.query = query;
+        this.filters = filters;
 
         return new Promise(this.channelList.bind(this));
     }
@@ -27,7 +30,10 @@ class ChannelList
             let channelsRaw = response[0].split('|');
             let channels = [];
 
-            channelsRaw.forEach(data => channels.push(new Channel(data)));
+            channelsRaw.forEach(data => channels.push(new Channel(this.query, data)));
+
+            if (this.filters)
+                channels = Filter.run(channels, 'data', this.filters);
 
             resolve(channels);
         })

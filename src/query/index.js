@@ -54,9 +54,11 @@ class TeamspeakFramework extends EventEmitter
 
     /**
      * Get channel list.
+     *
+     * @param {object} filters
      */
-    channelList() {
-        return ChannelListMethod.run(this.query);
+    channelList(filters) {
+        return ChannelListMethod.run(this.query, filters);
     }
 
     /**
@@ -70,9 +72,11 @@ class TeamspeakFramework extends EventEmitter
 
     /**
      * Get client list.
+     *
+     * @param {object} filters
      */
-    clientList() {
-        return ClientListMethod.run(this.query);
+    clientList(filters) {
+        return ClientListMethod.run(this.query, filters);
     }
 
     /**

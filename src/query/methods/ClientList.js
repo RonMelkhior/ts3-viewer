@@ -1,3 +1,4 @@
+const Filter = require('./../utils/Filter');
 const Client = require('./../Client');
 
 class ClientList
@@ -6,9 +7,11 @@ class ClientList
      * Execute the Client List method.
      *
      * @param {Query} query
+     * @param {object} filters
      */
-    static run(query) {
+    static run(query, filters) {
         this.query = query;
+        this.filters = filters;
 
         return new Promise(this.clientList.bind(this));
     }
@@ -27,7 +30,10 @@ class ClientList
             let clientsRaw = response[0].split('|');
             let clients = [];
 
-            clientsRaw.forEach(data => clients.push(new Client(data)));
+            clientsRaw.forEach(data => clients.push(new Client(this.query, data)));
+
+            if (this.filters)
+                clients = Filter.run(clients, 'data', this.filters);
 
             resolve(clients);
         })

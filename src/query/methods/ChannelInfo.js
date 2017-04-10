@@ -25,7 +25,7 @@ class ChannelInfo
         let query = ['channelinfo', 'cid=' + this.channelID].join(' ');
 
         this.query.exec(query)
-        .then(response => resolve(new Channel(response[0])))
+        .then(response => resolve(new Channel(this.query, response[0], this.channelID)))
         .catch(error => reject(error));
     }
 }
