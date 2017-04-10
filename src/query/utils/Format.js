@@ -4,7 +4,7 @@ class Format
      * Encode a string.
      *
      * @param {string} string
-     * @return {string}
+     * @returns {string}
      */
     static encode(string) {
         return String(string)
@@ -23,7 +23,7 @@ class Format
      * Decode a string.
      *
      * @param {string} string
-     * @return {string}
+     * @returns {string}
      */
     static decode(string) {
         return String(string)

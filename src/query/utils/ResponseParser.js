@@ -6,7 +6,7 @@ class ResponseParser
      * Parse a line.
      *
      * @param {string} line
-     * @return {array}
+     * @returns {array}
      */
     static parseLine(line) {
         let attributes = line.split(' ');
