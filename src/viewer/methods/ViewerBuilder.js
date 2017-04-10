@@ -45,9 +45,14 @@ class ViewerBuilder
         let filteredChannels = Filter.run(channels, 'data', { pid: parentChannelID });
 
         filteredChannels.forEach(channel => {
+            let channelClients = [];
+            channel.clients(clients).forEach(client => {
+                channelClients.push(client.getObject());
+            });
+
             result.push({
-                channel,
-                clients: channel.clients(clients),
+                channel: channel.getObject(),
+                clients: channelClients,
                 subChannels: this.getChannels(channels, clients, channel.data.cid)
             });
         });
