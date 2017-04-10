@@ -32,6 +32,22 @@ class Client
     }
 
     /**
+     * Return the client in an object format.
+     *
+     * @returns {object}
+     */
+    getObject() {
+        let properties = ['data', 'name', 'talkPower', 'away', 'micMuted', 'micDisabled', 'soundMuted', 'soundDisabled'];
+        let data = {};
+
+        properties.forEach(property => {
+            data[property] = this[property];
+        });
+
+        return data;
+    }
+
+    /**
      * Get the client's channel.
      */
     channel() {
