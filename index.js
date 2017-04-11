@@ -1,11 +1,7 @@
-const Framework = require('./src/query');
+const env = require('node-env-file')(__dirname + '/.env');
+const App = require('./src/app');
+const log = require('./src/log');
 
-let ts3 = new Framework('127.0.0.1', 10011);
+const app = new App();
 
-ts3.on('ready', prompt => {
-    console.log('connected!');
-});
-
-ts3.on('closed', () => {
-    console.log('closing!');
-});
+log.success('Now running');
