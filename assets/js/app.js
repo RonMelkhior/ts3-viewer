@@ -10,6 +10,5 @@ const app = new Vue({
 });
 
 socket.on('channels', channels => {
-    console.log('ya');
     app.channels = channels;
 });
