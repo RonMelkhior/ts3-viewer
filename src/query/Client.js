@@ -76,35 +76,35 @@ class Client
      * Determine if the client is away.
      */
     get away() {
-        return this.data.away == 1;
+        return this.data.client_away == 1;
     }
 
     /**
      * Determine if the client's microphone is muted.
      */
     get micMuted() {
-        return this.data.input_muted == 1;
+        return this.data.client_input_muted == 1;
     }
 
     /**
      * Determine if the client's microphone is disabled.
      */
     get micDisabled() {
-        return this.data.input_hardware == 0;
+        return this.data.client_input_hardware == 0;
     }
 
     /**
      * Determine if the client's sound is muted.
      */
     get soundMuted() {
-        return this.data.output_muted == 1;
+        return this.data.client_output_muted == 1;
     }
 
     /**
      * Determine if the client's sound is disabled.
      */
     get soundDisabled() {
-        return this.data.output_hardware == 0;
+        return this.data.client_output_hardware == 0;
     }
 }
 
