@@ -47,23 +47,28 @@ class ViewerBuilder
         filteredChannels.forEach(channel => {
             let channelClients = [];
             channel.clients(clients).forEach(client => {
-                let clientObject = client.getObject();
-                delete clientObject.data;
-
-                channelClients.push(clientObject);
+                channelClients.push(this.deleteData(client.getObject()));
             });
 
-            let channelObject = channel.getObject();
-            delete channelObject.data;
-
             result.push({
-                channel: channelObject,
+                channel: this.deleteData(channel.getObject()),
                 clients: channelClients,
                 subChannels: this.getChannels(channels, clients, channel.data.cid)
             });
         });
 
         return result;
+    }
+
+    /**
+     * Delete the `data` from an object.
+     *
+     * @param {object} object
+     */
+    static deleteData(object) {
+        delete object.data;
+
+        return object;
     }
 }
 
