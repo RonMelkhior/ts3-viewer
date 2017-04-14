@@ -38,7 +38,9 @@ class Channel
      * @returns {object}
      */
     getObject() {
-        let properties = ['data', 'name', 'topic', 'description', 'neededTalkPower'];
+        let properties = ['data', 'name', 'topic', 'description', 'neededTalkPower',
+                          'defaultChannel', 'channelType', 'permanent', 'semiPermanent',
+                          'temporary', 'spacer', 'spacerAlignment'];
         let data = {};
 
         properties.forEach(property => {
@@ -94,6 +96,88 @@ class Channel
      */
     get neededTalkPower() {
         return this.data.channel_needed_talk_power;
+    }
+
+    /**
+     * Determine if the channel is the server's default channel.
+     */
+    get defaultChannel() {
+        return this.data.channel_flag_default == 1;
+    }
+
+    /**
+     * Determine channel type.
+     *
+     * 1: Permanent
+     * 2: Semi-permanent
+     * 3: Temporary
+     */
+    get channelType() {
+        if (this.data.channel_flag_permanent == 1)
+            return 1;
+
+        if (this.data.channel_flag_semi_permanent == 1)
+            return 2;
+
+        return 3;
+    }
+
+    /**
+     * Determine if the channel is permanent.
+     */
+    get permanent() {
+        return this.channelType == 1;
+    }
+
+    /**
+     * Determine if the channel is semi-permanent.
+     */
+    get semiPermanent() {
+        return this.channelType == 2;
+    }
+
+    /**
+     * Determine if the channel is temporary.
+     */
+    get temporary() {
+        return this.channelType == 3;
+    }
+
+    /**
+     * Determine if the channel is a spacer.
+     */
+    get spacer() {
+        return this.permanent && this.data.pid == 0 && (/\[[^\]]*spacer[^\]]*\]/).test(this.name);
+    }
+
+    /**
+     * Determine the spacer alignment.
+     *
+     * 0: Not a spacer
+     * 1: Left
+     * 2: Center
+     * 3: Right
+     * 4: Repeat
+     */
+    get spacerAlignment() {
+        if (!this.spacer)
+            return 0;
+
+        let parse = this.name.match(/\[(.*)spacer.*\]/);
+
+        switch (parse[1]) {
+            case 'c':
+                return 2;
+
+            case 'r':
+                return 3;
+
+            case '*':
+                return 4;
+
+            default:
+                return 1;
+        }
     }
 }
 
