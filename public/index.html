@@ -12,7 +12,13 @@
     </head>
     <body>
         <div id="app">
-            <teamspeak-viewer :channels="channels"></teamspeak-viewer>
+            <div class="columns">
+                <div class="column is-4 is-offset-4">
+                    <div class="list">
+                        <teamspeak-channel v-for="channel in channels" :channel="channel" :key="channel.name"></teamspeak-channel>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script src="/js/vendor.js"></script>

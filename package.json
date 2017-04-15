@@ -29,7 +29,6 @@
     "telnet-client": "^0.13.1"
   },
   "devDependencies": {
-    "axios": "^0.16.1",
     "bulma": "^0.4.0",
     "laravel-mix": "^0.10.0",
     "socket.io-client": "^1.7.3",

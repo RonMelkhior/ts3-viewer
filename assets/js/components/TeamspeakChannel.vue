@@ -1,18 +1,32 @@
 <template>
-    <ul>
-        <li v-text="channel.channel.name"></li>
-        <ul>
-            <li v-for="client in channel.clients" v-text="client.name"></li>
-            <teamspeak-channel v-for="subChannel in channel.subChannels" :channel="subChannel" :key="subChannel.name"></teamspeak-channel>
-        </ul>
-    </ul>
-</template>
+    <div class="item">
+        <div class="level">
+            <div class="level-left">
+                <span class="level-item" v-text="channel.channel.name"></span>
+            </div>
 
-<style scoped>
-    ul > ul {
-        padding-left: 1em;
-    }
-</style>
+            <div class="level-right">
+                <span class="level-item"></span>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item">
+                <div class="list">
+                    <div class="item" v-for="client in channel.clients">
+                        <div class="level">
+                            <div class="level-left">
+                                <span class="level-item" v-text="client.name"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <teamspeak-channel v-for="subChannel in channel.subChannels" :channel="subChannel" :key="subChannel.name"></teamspeak-channel>
+        </div>
+    </div>
+</template>
 
 <script>
     export default {
