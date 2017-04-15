@@ -59,6 +59,7 @@ class App
      */
     initEvents() {
         this.viewer.on('ready', this.onReady.bind(this));
+        this.viewer.on('error', this.onError.bind(this));
         this.viewer.on('timeout', this.onTimeout.bind(this));
         this.viewer.on('close', this.onClose.bind(this));
 
@@ -83,6 +84,19 @@ class App
 
         this.app.listen(process.env.HTTP_SERVER_PORT);
         log.success('Started HTTP server.');
+    }
+
+    /**
+     * On connection error.
+     *
+     * @param {object} error
+     */
+    onError(error) {
+        log.error('An error occurred while trying to connect to the ServerQuery');
+        if (error.type === 1)
+            log.error('Type: 1, Error: ' + error.output.message);
+        else if (error.type === 2)
+            log.error('Type: 2, Code: ' + error.result.errorCode + ', Message: ' + error.result.errorMessage);
     }
 
     /**
