@@ -10,13 +10,13 @@ class Viewer extends EventEmitter
      *
      * @param {string} host
      * @param {number} port
-     * @param {number} serverID
+     * @param {object} loginData
      */
-    constructor(host, port, serverID) {
+    constructor(host, port, loginData) {
         super();
 
         this.ts3 = new Framework(host, port);
-        this.serverID = serverID;
+        this.loginData = loginData;
 
         this.initEvents();
     }
@@ -42,10 +42,18 @@ class Viewer extends EventEmitter
      *
      * @param {string} prompt
      */
-    onReady(prompt) {
-        this.ts3.use(this.serverID)
-        .then(response => this.emit('ready', prompt))
-        .catch(error => this.emit('error', error));
+    async onReady(prompt) {
+        try {
+            if (this.loginData.login)
+                await this.ts3.login(this.loginData.loginUser, this.loginData.loginPass);
+
+            await this.ts3.use(this.loginData.serverID);
+        } catch (error) {
+            this.emit('error', error);
+            return;
+        }
+
+        this.emit('ready', prompt);
     }
 
     /**

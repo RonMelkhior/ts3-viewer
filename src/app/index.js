@@ -11,7 +11,13 @@ class App
      * Construct the App.
      */
     constructor() {
-        this.viewer = new Viewer(process.env.TEAMSPEAK_QUERY_HOST, process.env.TEAMSPEAK_QUERY_PORT, process.env.TEAMSPEAK_QUERY_SERVER_ID);
+        let loginData = {
+            login: process.env.TEAMSPEAK_QUERY_LOGIN === 'true',
+            loginUser: process.env.TEAMSPEAK_QUERY_USER,
+            loginPass: process.env.TEAMSPEAK_QUERY_PASS,
+            serverID: process.env.TEAMSPEAK_QUERY_SERVER_ID,
+        };
+        this.viewer = new Viewer(process.env.TEAMSPEAK_QUERY_HOST, process.env.TEAMSPEAK_QUERY_PORT, loginData);
 
         this.setupExpress();
 
