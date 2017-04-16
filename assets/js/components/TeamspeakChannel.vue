@@ -25,15 +25,13 @@
                                     <img src="/img/mic-off.svg" v-else-if="client.micMuted || client.micDisabled">
                                     <img src="/img/person.svg" v-else>
                                 </span>
-                                <span class="level-item">
-                                    {{ client.name }}
-                                </span>
+                                <span class="level-item" v-text="client.name"></span>
                             </div>
 
                             <div class="level-right">
                                 <span class="level-item">
                                     <img src="/img/mic.svg" v-if="client.talkPower < channel.channel.neededTalkPower && client.isTalker">
-                                    <img src="/img/mic-off.svg" v-if="client.talkPower < channel.channel.neededTalkPower && !client.isTalker">
+                                    <img src="/img/mic-off.svg" v-else="client.talkPower < channel.channel.neededTalkPower && !client.isTalker">
                                 </span>
                             </div>
                         </div>
