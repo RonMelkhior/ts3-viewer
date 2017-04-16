@@ -31,7 +31,7 @@
                             <div class="level-right">
                                 <span class="level-item">
                                     <img src="/img/mic.svg" v-if="client.talkPower < channel.channel.neededTalkPower && client.isTalker">
-                                    <img src="/img/mic-off.svg" v-else="client.talkPower < channel.channel.neededTalkPower && !client.isTalker">
+                                    <img src="/img/mic-off.svg" v-else-if="client.talkPower < channel.channel.neededTalkPower && !client.isTalker">
                                 </span>
                             </div>
                         </div>
