@@ -37,7 +37,7 @@ class Client
      * @returns {object}
      */
     getObject() {
-        let properties = ['data', 'name', 'talkPower', 'away', 'micMuted', 'micDisabled', 'soundMuted', 'soundDisabled'];
+        let properties = ['data', 'name', 'talkPower', 'isTalker', 'away', 'micMuted', 'micDisabled', 'soundMuted', 'soundDisabled'];
         let data = {};
 
         properties.forEach(property => {
@@ -70,6 +70,13 @@ class Client
      */
     get talkPower() {
         return this.data.client_talk_power;
+    }
+
+    /**
+     * Determine if the client can talk.
+     */
+    get isTalker() {
+        return this.data.client_is_talker == 1;
     }
 
     /**
