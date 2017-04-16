@@ -2,17 +2,14 @@
 
 TS3 Viewer is a web-based Teamspeak 3 server viewer, with _live_ updates.
 
-# Note
-
-At the moment, the web viewer is **very** basic, but it will be improved upon soon.
-
 # Framework
 
 TS3 Viewer contains a simple framework around Teamspeak 3's Telnet interface (located in `src/query`).
 
 # Installation
 
-TS3 Viewer requires Node.js v7.6+
+TS3 Viewer requires Node.js v7.6+  
+Rename `.env.example` to `.env`, and edit it's values to your preference.
 
 ```
 > npm install -S
