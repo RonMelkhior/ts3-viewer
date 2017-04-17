@@ -5,11 +5,18 @@
                 <span class="level-item">
                     <img src="/img/channel.svg" v-if="!channel.channel.spacer">
                 </span>
-                <span class="level-item" v-text="channel.channel.name"></span>
+                <span class="level-item" v-text="channel.channel.name" v-if="!channel.channel.spacer"></span>
+
+                <span class="level-item" v-text="channel.channel.spacerName" v-if="channel.channel.spacer && channel.channel.spacerAlignment == 1"></span>
+                <span class="level-item" v-if="channel.channel.spacer && channel.channel.spacerName.length == 0"><br></span>
+            </div>
+
+            <div class="level-center">
+                <span class="level-item" v-text="channel.channel.spacerName" v-if="channel.channel.spacerAlignment == 2 || channel.channel.spacerAlignment == 4"></span>
             </div>
 
             <div class="level-right">
-                <span class="level-item"></span>
+                <span class="level-item" v-text="channel.channel.spacerName" v-if="channel.channel.spacerAlignment == 3"></span>
             </div>
         </div>
 
