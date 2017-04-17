@@ -40,7 +40,7 @@ class Channel
     getObject() {
         let properties = ['data', 'name', 'topic', 'description', 'neededTalkPower',
                           'defaultChannel', 'channelType', 'permanent', 'semiPermanent',
-                          'temporary', 'spacer', 'spacerAlignment'];
+                          'temporary', 'spacer', 'spacerAlignment', 'spacerName'];
         let data = {};
 
         properties.forEach(property => {
@@ -178,6 +178,20 @@ class Channel
             default:
                 return 1;
         }
+    }
+
+    /**
+     * Get the spacer name after parsing.
+     */
+    get spacerName() {
+        if (!this.spacer)
+            return this.name;
+
+        let cleanedName = this.name.substring(this.name.indexOf(']') + 1);
+        if (this.spacerAlignment == 4)
+            cleanedName = cleanedName.repeat(Math.floor(30 / cleanedName.length));
+
+        return cleanedName;
     }
 }
 
