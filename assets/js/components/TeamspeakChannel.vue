@@ -1,6 +1,6 @@
 <template>
     <div class="item">
-        <div class="level">
+        <div class="level is-mobile">
             <div class="level-left">
                 <span class="level-item">
                     <img src="/img/channel.svg" v-if="!channel.channel.spacer">
@@ -24,7 +24,7 @@
             <div class="item">
                 <div class="list">
                     <div class="item" v-for="client in channel.clients">
-                        <div class="level">
+                        <div class="level is-mobile">
                             <div class="level-left">
                                 <span class="level-item">
                                     <img src="/img/away.svg" v-if="client.away">
