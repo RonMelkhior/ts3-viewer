@@ -1,7 +1,8 @@
 const fs = require('fs');
+const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const io = require('socket.io')(1337);
+const io = require('socket.io');
 const Viewer = require('./../viewer');
 const log = require('./../log');
 
@@ -19,9 +20,8 @@ class App
         };
         this.viewer = new Viewer(process.env.TEAMSPEAK_QUERY_HOST, process.env.TEAMSPEAK_QUERY_PORT, loginData);
 
-        this.setupExpress();
+        this.setupWeb();
 
-        this.initRoutes();
         this.initEvents();
     }
 
@@ -38,7 +38,7 @@ class App
 
         if (JSON.stringify(viewerData) != JSON.stringify(this.viewerData)) {
             this.viewerData = viewerData;
-            io.emit('channels', this.viewerData);
+            this.io.emit('channels', this.viewerData);
         }
 
         setTimeout(this.refreshData.bind(this), 1000);
@@ -47,17 +47,14 @@ class App
     /**
      * Setup all Express settings.
      */
-    setupExpress() {
+    setupWeb() {
         this.app = new express();
+
+        this.http = http.createServer(this.app);
+        this.io = io.listen(this.http);
+
         this.app.use(bodyParser.json());
         this.app.use(express.static('public'));
-    }
-
-    /**
-     * Initialize web routes.
-     */
-    initRoutes() {
-
     }
 
     /**
@@ -69,7 +66,7 @@ class App
         this.viewer.on('timeout', this.onTimeout.bind(this));
         this.viewer.on('close', this.onClose.bind(this));
 
-        io.on('connection', this.onSocketConnection.bind(this));
+        this.io.on('connection', this.onSocketConnection.bind(this));
     }
 
     /**
@@ -78,7 +75,7 @@ class App
      * @param {Socket} socket
      */
     onSocketConnection(socket) {
-        io.to(socket.id).emit('channels', this.viewerData);
+        this.io.to(socket.id).emit('channels', this.viewerData);
     }
 
     /**
@@ -88,7 +85,7 @@ class App
         log.success('Connected to the ServerQuery, getting data...');
         this.refreshData();
 
-        this.app.listen(process.env.HTTP_SERVER_PORT);
+        this.http.listen(process.env.HTTP_SERVER_PORT);
         log.success('Started HTTP server.');
     }
 
