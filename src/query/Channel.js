@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const Format = require('./utils/Format');
 const ResponseParser = require('./utils/ResponseParser');
 const Filter = require('./utils/Filter');
@@ -67,7 +68,10 @@ class Channel
      * @returns {array}
      */
     clients(clientList) {
-        return Filter.run(clientList, 'data', { cid: this.data.cid });
+        let clients = Filter.run(clientList, 'data', { cid: this.data.cid });
+        clients = _.orderBy(clients, ['talkPower', 'name'], ['desc', 'asc']);
+
+        return clients;
     }
 
     /**
