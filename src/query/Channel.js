@@ -191,7 +191,7 @@ class Channel
         if (!this.spacer)
             return this.name;
 
-        let cleanedName = this.name.substring(this.name.indexOf(']') + 1);
+        let cleanedName = this.name.replace(/.*]/, '');
         if (this.spacerAlignment == 4)
             cleanedName = cleanedName.repeat(Math.floor(30 / cleanedName.length));
 
