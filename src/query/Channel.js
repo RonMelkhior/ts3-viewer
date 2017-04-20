@@ -69,7 +69,7 @@ class Channel
      */
     clients(clientList) {
         let clients = Filter.run(clientList, 'data', { cid: this.data.cid });
-        clients = _.orderBy(clients, ['talkPower', 'name'], ['desc', 'asc']);
+        clients = _.orderBy(clients, ['talkPower', client => client.name.toLowerCase()], ['desc', 'asc']);
 
         return clients;
     }
