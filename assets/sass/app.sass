@@ -1,19 +1,19 @@
 #app
     margin-top: 3em
 
-div.list
-    div.item:not(:first-child)
-        margin-top: 0.2em
-    div.list
-        padding-left: 1em
-
-.level:not(:last-child)
-    margin-bottom: 0rem
+.list
+    .item
+        &:not(:first-child)
+            margin-top: 0.2em
+    .list
+        margin-left: 1em
 
 .level
     .level-item
         img
             width: 1rem
             height: 1rem
-    .level-item:not(:last-child)
-        margin-right: 0.15em
+        &:not(:last-child)
+            margin-right: 0.15em
+    &:not(:last-child)
+        margin-bottom: 0rem
