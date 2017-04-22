@@ -16,6 +16,12 @@
             </div>
 
             <div class="level-right">
+                <span class="level-item" v-if="!channel.channel.spacer">
+                    <img src="/img/home.svg" v-if="channel.channel.defaultChannel">
+                    <img src="/img/lock.svg" v-if="channel.channel.passwordProtected">
+                    <img src="/img/music.svg" v-if="channel.channel.codec == 5">
+                    <img src="/img/moderated.svg" v-if="channel.channel.neededTalkPower > 0">
+                </span>
                 <span class="level-item" v-text="channel.channel.spacerName" v-if="channel.channel.spacerAlignment == 3"></span>
             </div>
         </div>
