@@ -40,8 +40,9 @@ class Channel
      */
     getObject() {
         let properties = ['data', 'name', 'topic', 'description', 'neededTalkPower',
-                          'defaultChannel', 'channelType', 'permanent', 'semiPermanent',
-                          'temporary', 'spacer', 'spacerAlignment', 'spacerName'];
+                          'defaultChannel', 'codec', 'channelType', 'permanent',
+                          'semiPermanent', 'temporary', 'spacer', 'spacerAlignment',
+                          'spacerName', 'passwordProtected'];
         let data = {};
 
         properties.forEach(property => {
@@ -107,6 +108,20 @@ class Channel
      */
     get defaultChannel() {
         return this.data.channel_flag_default == 1;
+    }
+
+    /**
+     * Get the channel's voice codec.
+     *
+     * 0: Speex Narrowband
+     * 1: Speex Wideband
+     * 2: Speex Ultra-Wideband
+     * 3: CELT Mono
+     * 4: Opus Voice
+     * 5: Opus Music
+     */
+    get codec() {
+        return parseInt(this.data.channel_codec);
     }
 
     /**
@@ -196,6 +211,13 @@ class Channel
             cleanedName = cleanedName.repeat(Math.floor(30 / cleanedName.length));
 
         return cleanedName;
+    }
+
+    /**
+     * Determine if the channel is password protected.
+     */
+    get passwordProtected() {
+        return this.data.channel_flag_password == 1;
     }
 }
 
