@@ -7,6 +7,7 @@ const ChannelInfoMethod = require('./methods/ChannelInfo');
 const ChannelListMethod = require('./methods/ChannelList');
 const ClientInfoMethod = require('./methods/ClientInfo');
 const ClientListMethod = require('./methods/ClientList');
+const ClientUpdateMethod = require('./methods/ClientUpdate');
 
 class TeamspeakFramework extends EventEmitter
 {
@@ -77,6 +78,15 @@ class TeamspeakFramework extends EventEmitter
      */
     clientList(filters) {
         return ClientListMethod.run(this.query, filters);
+    }
+
+    /**
+     * Update ServerQuery client info.
+     *
+     * @param {array} params
+     */
+    clientUpdate(params) {
+        return ClientUpdateMethod.run(this.query, params);
     }
 
     /**
