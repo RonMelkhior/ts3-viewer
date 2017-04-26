@@ -100,7 +100,7 @@ class Channel
      * Get the channel's needed talk power.
      */
     get neededTalkPower() {
-        return this.data.channel_needed_talk_power;
+        return parseInt(this.data.channel_needed_talk_power);
     }
 
     /**
