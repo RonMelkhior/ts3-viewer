@@ -37,11 +37,6 @@ class App
             log.error(error);
         }
 
-        if (JSON.stringify(viewerData) != JSON.stringify(this.viewerData)) {
-            this.viewerData = viewerData;
-            this.io.emit('channels', this.viewerData);
-        }
-
         if (!_.isEqual(viewerData, this.viewerData)) {
             this.viewerData = viewerData;
             this.io.emit('channels', this.viewerData);
