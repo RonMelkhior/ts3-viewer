@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 const io = require('socket.io');
@@ -37,6 +38,11 @@ class App
         }
 
         if (JSON.stringify(viewerData) != JSON.stringify(this.viewerData)) {
+            this.viewerData = viewerData;
+            this.io.emit('channels', this.viewerData);
+        }
+
+        if (!_.isEqual(viewerData, this.viewerData)) {
             this.viewerData = viewerData;
             this.io.emit('channels', this.viewerData);
         }
