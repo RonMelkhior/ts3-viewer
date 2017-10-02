@@ -107,14 +107,14 @@ class App
      * On connection timeout.
      */
     onTimeout() {
-
+        this.viewer.ts3.query.connect();
     }
 
     /**
      * On connection closed.
      */
     onClose() {
-
+        this.viewer.ts3.query.connect();
     }
 }
 
