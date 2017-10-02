@@ -14,14 +14,11 @@ class Query extends EventEmitter
         super();
 
         this.socket = new Telnet();
-        this.socket.connect({
-            host,
-            port,
-            shellPrompt: 'Welcome to the TeamSpeak 3 ServerQuery interface, type "help" for a list of commands and "help <command>" for information on a specific command.',
-            irs: "\n\r",
-            echoLines: -1,
-            timeout: 600000,
-        });
+
+        this.host = host;
+        this.port = port;
+
+        this.connect();
 
         this.initEvents();
     }
@@ -64,6 +61,22 @@ class Query extends EventEmitter
         this.socket.on('ready', this.onReady.bind(this));
         this.socket.on('timeout', this.onTimeout.bind(this));
         this.socket.on('close', this.onClose.bind(this));
+    }
+
+    /**
+     * Connect to telnet socket.
+     */
+    connect() {
+        const { host, port } = this;
+
+        this.socket.connect({
+            host,
+            port,
+            shellPrompt: 'Welcome to the TeamSpeak 3 ServerQuery interface, type "help" for a list of commands and "help <command>" for information on a specific command.',
+            irs: "\n\r",
+            echoLines: -1,
+            timeout: 600000,
+        });
     }
 
     /**
