@@ -35,6 +35,7 @@ class Viewer extends EventEmitter
         this.ts3.on('ready', this.onReady.bind(this));
         this.ts3.on('timeout', this.onTimeout.bind(this));
         this.ts3.on('close', this.onClose.bind(this));
+        this.ts3.on('error', this.onError.bind(this));
     }
 
     /**
@@ -49,7 +50,7 @@ class Viewer extends EventEmitter
 
             await this.ts3.use(this.loginData.serverID);
         } catch (error) {
-            this.emit('error', error);
+            this.emit('connection_error', error);
             return;
         }
 
@@ -68,6 +69,15 @@ class Viewer extends EventEmitter
      */
     onClose() {
         this.emit('close');
+    }
+
+    /**
+     * On connection error.
+     *
+     * @param {string} error
+     */
+    onError(error) {
+        this.emit('error', error);
     }
 }
 

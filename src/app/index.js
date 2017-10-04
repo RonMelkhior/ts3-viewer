@@ -63,7 +63,7 @@ class App
      */
     initEvents() {
         this.viewer.on('ready', this.onReady.bind(this));
-        this.viewer.on('error', this.onError.bind(this));
+        this.viewer.on('connection_error', this.onConnectionError.bind(this));
         this.viewer.on('timeout', this.onTimeout.bind(this));
         this.viewer.on('close', this.onClose.bind(this));
 
@@ -95,7 +95,7 @@ class App
      *
      * @param {object} error
      */
-    onError(error) {
+    onConnectionError(error) {
         log.error('An error occurred while trying to connect to the ServerQuery');
         if (error.type === 1)
             log.error('Type: 1, Error: ' + error.output.message);
@@ -107,6 +107,7 @@ class App
      * On connection timeout.
      */
     onTimeout() {
+        log.error('Connection timed-out.');
         this.viewer.ts3.query.connect();
     }
 
@@ -114,7 +115,18 @@ class App
      * On connection closed.
      */
     onClose() {
+        log.error('Connection closed.');
         this.viewer.ts3.query.connect();
+    }
+
+    /**
+     * On connection error.
+     *
+     * @param {string} error
+     */
+    onError(errorr) {
+        log.error('Connection error!');
+        // No need to attempt to reconnet, since node-telnet sends a close event right after
     }
 }
 

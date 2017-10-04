@@ -96,6 +96,7 @@ class TeamspeakFramework extends EventEmitter
         this.query.on('ready', this.onReady.bind(this));
         this.query.on('timeout', this.onTimeout.bind(this));
         this.query.on('close', this.onClose.bind(this));
+        this.query.on('error', this.onError.bind(this));
     }
 
     /**
@@ -119,6 +120,15 @@ class TeamspeakFramework extends EventEmitter
      */
     onClose() {
         this.emit('close');
+    }
+
+    /**
+     * On error.
+     *
+     * @param {string} error
+     */
+    onError(error) {
+        this.emit('error', error);
     }
 }
 

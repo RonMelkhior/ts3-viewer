@@ -17,6 +17,7 @@ class Query extends EventEmitter
 
         this.host = host;
         this.port = port;
+        this.connected = false;
 
         this.connect();
 
@@ -61,6 +62,7 @@ class Query extends EventEmitter
         this.socket.on('ready', this.onReady.bind(this));
         this.socket.on('timeout', this.onTimeout.bind(this));
         this.socket.on('close', this.onClose.bind(this));
+        this.socket.on('error', this.onError.bind(this));
     }
 
     /**
@@ -85,6 +87,7 @@ class Query extends EventEmitter
      * @param {string} prompt
      */
     onReady(prompt) {
+        this.connected = true;
         this.emit('ready', prompt);
     }
 
@@ -92,6 +95,7 @@ class Query extends EventEmitter
      * On timeout.
      */
     onTimeout() {
+        this.connected = false;
         this.emit('timeout');
     }
 
@@ -99,7 +103,18 @@ class Query extends EventEmitter
      * On close.
      */
     onClose() {
+        this.connected = false;
         this.emit('close');
+    }
+
+    /**
+     * On error.
+     *
+     * @param {string} error
+     */
+    onError(error) {
+        this.connected = false;
+        this.emit('error', error);
     }
 }
 
