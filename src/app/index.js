@@ -35,6 +35,9 @@ class App
             viewerData = await this.viewer.getViewer();
         } catch (error) {
             log.error(error);
+            setTimeout(this.refreshData.bind(this), 1000);
+
+            return;
         }
 
         if (!_.isEqual(viewerData, this.viewerData)) {
