@@ -27,7 +27,7 @@
     "moment": "^2.18.1",
     "node-env-file": "^0.1.8",
     "socket.io": "^1.7.3",
-    "telnet-client": "^0.13.1"
+    "telnet-client": "^0.15.4"
   },
   "devDependencies": {
     "bulma": "^0.4.0",
