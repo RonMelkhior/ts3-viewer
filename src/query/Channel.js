@@ -184,7 +184,7 @@ class Channel
 
         let parse = this.name.match(/\[(.*)spacer.*\]/);
 
-        switch (parse[1]) {
+        switch (parse[1].charAt(0)) {
             case 'c':
                 return 2;
 
