@@ -1,0 +1,5 @@
+.env
+ts3-viewer
+ts3-viewer.exe
+.vscode
+node_modules/
