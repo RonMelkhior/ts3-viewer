@@ -10,12 +10,9 @@ import (
 
 var melodyClient *melody.Melody
 
-func newMelodyClient() error {
-	melodyClient = melody.New()
-
-	melodyClient.HandleConnect(handleMelodyConnect)
-
-	return nil
+func newMelodyClient() *melody.Melody {
+	client := melody.New()
+	client.HandleConnect(handleMelodyConnect)
 }
 
 // TODO: clean-up

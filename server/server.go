@@ -8,10 +8,8 @@ import (
 
 var server *http.Server
 
-func Start() error {
-	if err := newMelodyClient(); err != nil {
-		return err
-	}
+func Start() {
+	melodyClient = newMelodyClient()
 
 	mux := http.NewServeMux()
 	mux.Handle("/ws", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -26,8 +24,6 @@ func Start() error {
 	}
 
 	go server.ListenAndServe()
-
-	return nil
 }
 
 func Shutdown() {
