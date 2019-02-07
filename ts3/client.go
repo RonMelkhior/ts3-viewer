@@ -13,11 +13,17 @@ type Client struct {
 	Away        bool   `json:"away" ms:"client_away"`
 	AwayMessage string `json:"away_message" ms:"client_away_message"`
 	TalkPower   int    `json:"talk_power" ms:"client_talk_power"`
+
+	SoundEnabled bool `json:"sound_enabled" ms:"client_output_hardware"`
+	SoundMuted   bool `json:"sound_muted" ms:"client_output_muted"`
+
+	MicEnabled bool `json:"mic_enabled" ms:"client_input_hardware"`
+	MicMuted   bool `json:"mic_muted" ms:"client_input_muted"`
 }
 
 func ClientList(s *ts3Lib.ServerMethods) ([]Client, error) {
 	var clients []Client
-	if _, err := s.ExecCmd(ts3Lib.NewCmd("clientlist").WithOptions("-voice").WithResponse(&clients)); err != nil {
+	if _, err := s.ExecCmd(ts3Lib.NewCmd("clientlist").WithOptions("-voice", "-away").WithResponse(&clients)); err != nil {
 		return nil, err
 	}
 

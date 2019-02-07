@@ -12,6 +12,7 @@ type Channel struct {
 	PasswordProtected bool   `json:"password_protected" ms:"channel_flag_password"`
 	Permanent         bool   `json:"permanent" ms:"channel_flag_permanent"`
 	SemiPermanent     bool   `json:"semi_permanent" ms:"channel_flag_semi_permanent"`
+	Codec             uint8  `json:"codec" ms:"channel_codec"`
 
 	Clients     []Client  `json:"clients,omitempty"`
 	Subchannels []Channel `json:"sub_channels,omitempty"`
