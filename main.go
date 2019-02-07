@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -15,9 +14,7 @@ import (
 // Setup flags for other init() functions.
 
 func main() {
-	if err := server.Start(); err != nil {
-		log.Fatal(err)
-	}
+	go server.Start()
 
 	go viewer.RunViewerDataChecker()
 

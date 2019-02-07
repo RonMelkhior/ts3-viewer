@@ -13,6 +13,8 @@ var melodyClient *melody.Melody
 func newMelodyClient() *melody.Melody {
 	client := melody.New()
 	client.HandleConnect(handleMelodyConnect)
+
+	return client
 }
 
 // TODO: clean-up

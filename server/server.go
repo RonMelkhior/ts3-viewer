@@ -23,7 +23,7 @@ func Start() {
 		WriteTimeout: time.Second * 5,
 	}
 
-	go server.ListenAndServe()
+	server.ListenAndServe()
 }
 
 func Shutdown() {
