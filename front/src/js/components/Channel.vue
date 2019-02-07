@@ -1,5 +1,5 @@
 <template>
-	<div class="channel leading-normal">
+	<div class="channel">
 		<div class="flex">
 			<div class="flex flex-auto flex-no-shrink justify-start">
 				<div v-if="!isSpacer" class="flex align-center justify-center w-6 h-6">

@@ -1,5 +1,9 @@
 <template>
-	<div id="app" class="text-lg font-sans mt-20 ml-auto mr-auto max-w-screen" v-if="viewerData">
+	<div
+		id="app"
+		class="text-lg font-sans leading-normal mt-20 ml-auto mr-auto max-w-screen"
+		v-if="viewerData"
+	>
 		<Channel v-for="channel in viewerData" :channel="channel" :key="channel.channel_id"/>
 	</div>
 </template>
