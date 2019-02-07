@@ -1,11 +1,11 @@
 <template>
-	<div id="app" class="font-sans" v-if="viewerData">
+	<div id="app" class="text-lg font-sans mt-20 ml-auto mr-auto max-w-screen" v-if="viewerData">
 		<Channel v-for="channel in viewerData" :channel="channel" :key="channel.channel_id"/>
 	</div>
 </template>
 
 <script>
-import Channel from './components/Channel.vue';
+import Channel from './Channel.vue';
 
 export default {
 	components: {
@@ -42,10 +42,5 @@ export default {
 
 #app {
 	width: 600px;
-	max-width: 100vw;
-	margin: 0 auto;
-	margin-top: 5rem;
-	/*font-family: 'Open Sans', sans-serif; */
-	font-size: 17px;
 }
 </style>

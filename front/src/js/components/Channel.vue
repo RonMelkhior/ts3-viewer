@@ -1,28 +1,48 @@
 <template>
-	<div class="channel">
+	<div class="channel leading-normal">
 		<div class="flex">
-			<div class="flex flex-auto flex-no-shrink justify-start">{{ channel.channel_name }}</div>
+			<div class="flex flex-auto flex-no-shrink justify-start">
+				<div v-if="!isSpacer" class="flex align-center justify-center w-6 h-6">
+					<img svg-inline class="w-4" src="../../img/channel.svg">
+				</div>
+				{{ channel.channel_name }}
+			</div>
 			<!--<div class="flex justify-center">Test</div>-->
 			<div class="flex flex-auto flex-no-shrink justify-end">Test</div>
 		</div>
 
-		<ul v-if="orderedClients.length > 0">
-			<li v-for="client in orderedClients" :key="client.database_id">{{ client.nickname }}</li>
-		</ul>
+		<div v-if="orderedClients.length > 0">
+			<Client v-for="client in orderedClients" :key="client.database_id" :client="client"/>
+		</div>
 
-		<ul v-if="channel.sub_channels">
-			<li v-for="subChannel in channel.sub_channels" :key="subChannel.channel_id">
-				<Channel :channel="subChannel"/>
-			</li>
-		</ul>
+		<div v-if="channel.sub_channels">
+			<Channel
+				v-for="subChannel in channel.sub_channels"
+				:key="subChannel.channel_id"
+				:channel="subChannel"
+			/>
+		</div>
 	</div>
 </template>
 
+<style lang="scss" scoped>
+.channel .channel {
+	@apply .ml-6;
+}
+</style>
+
+
 <script>
+import Client from './Client.vue';
+
 const spacerMatchingRegex = /\[[^\]]*spacer[^\]]*\]/;
 
 export default {
 	name: 'Channel',
+
+	components: {
+		Client,
+	},
 
 	props: {
 		channel: {
