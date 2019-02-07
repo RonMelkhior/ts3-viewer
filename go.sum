@@ -8,6 +8,8 @@ github.com/mitchellh/mapstructure v1.1.2 h1:fmNYVwqnSfB9mZU6OS2O6GsXM+wcskZDuKQz
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/multiplay/go-ts3 v1.0.0 h1:loxtEFqvYtpoGh1jOqEt6aDzctYuQsi3vb3dMpvWiWw=
 github.com/multiplay/go-ts3 v1.0.0/go.mod h1:14S6cS3fLNT3xOytrA/DkRyAFNuQLMLEqOYAsf87IbQ=
+github.com/multiplay/go-ts3 v1.0.1-0.20190206183412-78271a6b12b2 h1:aaRDsXIJvN7BzMIQy/TeuR6daqIHc9/J+fiDrZxAgY8=
+github.com/multiplay/go-ts3 v1.0.1-0.20190206183412-78271a6b12b2/go.mod h1:14S6cS3fLNT3xOytrA/DkRyAFNuQLMLEqOYAsf87IbQ=
 github.com/olahol/melody v0.0.0-20180227134253-7bd65910e5ab h1:2fsluM+sAZRIQtvloPaokkWWjV8strYfmXsDCtZMqt0=
 github.com/olahol/melody v0.0.0-20180227134253-7bd65910e5ab/go.mod h1:3lo03f1jM3KFUG/rsujuLB1rBmlvIzVM3SCqbuHqsBU=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

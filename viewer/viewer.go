@@ -1,7 +1,6 @@
 package viewer
 
 import (
-	"io"
 	"log"
 	"reflect"
 	"time"
@@ -47,7 +46,7 @@ func checkView() {
 
 	data, err := buildViewerData(conn.Get())
 	if err != nil {
-		if err == io.ErrUnexpectedEOF {
+		if err == ts3Lib.ErrTimeout || err == ts3Lib.ErrNotConnected {
 			conn.Timeout()
 		}
 

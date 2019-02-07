@@ -5,7 +5,7 @@ require (
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/joho/godotenv v1.3.0
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
-	github.com/multiplay/go-ts3 v1.0.0
+	github.com/multiplay/go-ts3 v1.0.1-0.20190206183412-78271a6b12b2
 	github.com/olahol/melody v0.0.0-20180227134253-7bd65910e5ab
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.2.2 // indirect
