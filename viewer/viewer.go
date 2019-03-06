@@ -2,6 +2,7 @@ package viewer
 
 import (
 	"log"
+	"net"
 	"reflect"
 	"time"
 
@@ -47,6 +48,8 @@ func checkView() {
 	data, err := buildViewerData(conn.Get())
 	if err != nil {
 		if err == ts3Lib.ErrTimeout || err == ts3Lib.ErrNotConnected {
+			conn.Timeout()
+		} else if netErr, ok := err.(net.Error); ok && (netErr.Timeout() || !netErr.Temporary()) {
 			conn.Timeout()
 		}
 
