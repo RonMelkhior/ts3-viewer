@@ -7,8 +7,6 @@
 				</div>
 				{{ channel.channel_name }}
 			</div>
-			<!--<div class="flex justify-center">Test</div>-->
-			<div class="flex flex-auto flex-no-shrink justify-end">Test</div>
 		</div>
 
 		<div v-if="orderedClients.length > 0">
