@@ -1,6 +1,6 @@
 <template>
 	<div class="flex ml-6">
-		<div class="flex align-center justify-center w-6 h-6">
+		<div class="flex items-center justify-center w-6 h-6">
 			<img v-if="client.away" svg-inline class="display-icon away-icon" src="../../img/away.svg">
 			<img
 				v-else-if="client.sound_muted || !client.sound_enabled"
@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
 .display-icon {
-	@apply w-4;
+	@apply w-4 h-4;
 }
 
 .away-icon .secondary {

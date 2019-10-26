@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-@tailwind preflight;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 

@@ -27,7 +27,7 @@
 
 <style lang="scss" scoped>
 .channel .channel {
-	@apply .ml-6;
+	@apply ml-6;
 }
 </style>
 
