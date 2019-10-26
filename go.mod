@@ -13,3 +13,5 @@ require (
 	golang.org/x/oauth2 v0.0.0-20181203162652-d668ce993890 // indirect
 	golang.org/x/tools v0.0.0-20190103205943-8a6051197512 // indirect
 )
+
+go 1.13
